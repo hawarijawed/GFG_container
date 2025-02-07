@@ -1,0 +1,38 @@
+/*
+Given a Binary Tree, your task is to return its In-Order Traversal.
+
+An inorder traversal first visits the left child (including its entire subtree), then visits the node, and finally visits the right child (including its entire subtree).
+
+Follow Up: Try solving this with O(1) auxiliary space.
+*/
+/* A Binary Tree node
+
+class Node {
+    int data;
+    Node left, right;
+   Node(int item)    {
+        data = item;
+        left = right = null;
+    }
+}
+*/
+class Solution {
+    // Function to return a list containing the inorder traversal of the tree.
+    void helper(Node head, ArrayList<Integer> lst){
+        if(head == null){
+            return ;
+        }
+        
+        helper(head.left, lst);
+        lst.add(head.data);
+        helper(head.right, lst);
+        
+    }
+    ArrayList<Integer> inOrder(Node root) {
+        // Code
+        ArrayList<Integer> lst = new ArrayList<>();
+        helper(root, lst);
+        
+        return lst;
+    }
+}
