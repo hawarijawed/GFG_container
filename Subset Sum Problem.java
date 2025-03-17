@@ -1,0 +1,30 @@
+/*
+Given an array of positive integers arr[] and a value sum, determine if there is a subset of arr[] with sum equal to given sum. 
+
+*/
+class Solution {
+
+    static Boolean isSubsetSum(int arr[], int sum) {
+        // code here
+        int n = arr.length;
+        boolean [][]dp = new boolean[n+1][sum + 1];
+        
+        for(int i=0; i<n+1; i++){
+            dp[i][0] = true;
+        }
+        
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= sum; j++) {
+                // If the current element is greater than the sum, we can't include it
+                if (arr[i - 1] > j) {
+                    dp[i][j] = dp[i - 1][j];
+                } else {
+                    // Either we exclude the element or include it
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - arr[i - 1]];
+                }
+            }
+        }
+        
+        return dp[n][sum];
+    }
+}
