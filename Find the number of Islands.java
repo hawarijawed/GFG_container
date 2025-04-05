@@ -35,3 +35,49 @@ class Solution {
         
     }
 }
+
+
+
+
+class Solution {
+     public int countIslands(char[][] grid) {
+        // Code here
+        int n=grid.length;
+        int m=grid[0].length;
+        int count=0;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]=='L'){
+                    dfs(grid,i,j,n,m);
+                    count++;
+                }
+            }
+        }
+        return count;
+        
+    }
+    public void dfs(char [][]grid, int i, int j, int n, int m){
+        //Out of bound case
+        if(i<0 || i>=n || j<0 || j>=m){
+            return;
+        }
+        
+        //Visited
+        if(grid[i][j] == 'W' || grid[i][j] == 'V'){
+            return;
+        }
+        
+        //Mark the index as visited
+        grid[i][j] = 'V';
+        
+        dfs(grid, i-1, j-1, n, m);//diagonal left up
+        dfs(grid, i-1, j, n, m);  //up
+        dfs(grid, i-1, j+1, n, m);//diagonal right up
+        dfs(grid, i, j-1, n, m);//Left
+        dfs(grid, i+1, j-1, n, m);//Diagonal bottom left
+        dfs(grid, i+1, j, n, m);//Bottom
+        dfs(grid, i+1, j+1, n, m);//Diagonal right bottom
+        dfs(grid, i, j+1, n, m);//Right
+    }
+    
+}
