@@ -1,13 +1,7 @@
 /*
-You are given a 0-indexed integer array nums and an integer value.
+Given the root of a Binary Search Tree (BST) and two integers l and r, remove all the nodes whose values lie outside the range [l, r].
 
-In one operation, you can add or subtract value from any element of nums.
-
-For example, if nums = [1,2,3] and value = 2, you can choose to subtract value from nums[0] to make nums = [-1,2,3].
-The MEX (minimum excluded) of an array is the smallest missing non-negative integer in it.
-
-For example, the MEX of [-1,2,3] is 0 while the MEX of [1,0,3] is 2.
-Return the maximum MEX of nums after applying the mentioned operation any number of times.
+Note: The modified tree should also be BST and the sequence of the remaining nodes should not be changed.
 */
 /*
 class Node {
