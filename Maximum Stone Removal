@@ -1,0 +1,35 @@
+/*
+Given an 2D array of non-negative integers stones[][] where stones[i] = [xi , yi] represents the location of the ith stone on a 2D plane, the task is to return the maximum possible number of stones that you can remove.
+
+A stone can be removed if it shares either the same row or the same column as another stone that has not been removed.
+
+Note: Each coordinate point may have at most one stone.
+*/
+class Solution {
+        void dfs(int i, int[][] stones, boolean[] visited) {
+        visited[i] = true;
+
+        for (int j = 0; j < stones.length; j++) {
+            if (!visited[j]) {
+                if (stones[i][0] == stones[j][0] || stones[i][1] == stones[j][1]) {
+                    dfs(j, stones, visited);
+                }
+            }
+        }
+    }
+
+    public int maxRemove(int[][] stones) {
+        int n = stones.length;
+        boolean[] visited = new boolean[stones.length];
+        int stone = 0;
+
+        for (int i = 0; i < stones.length; i++) {
+            if (!visited[i]) {
+                dfs(i, stones, visited);
+                stone++;
+            }
+        }
+
+        return stones.length - stone;
+    }
+};
